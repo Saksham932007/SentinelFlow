@@ -1,0 +1,10 @@
+groups:
+  - name: triton-alerts
+    rules:
+      - alert: TritonHighLatency
+        expr: rate(triton_http_request_latency_seconds_sum[5m]) > 0.5
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High Triton HTTP latency"
