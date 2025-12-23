@@ -1,0 +1,19 @@
+name: "lstm_fraud"
+platform: "onnxruntime_onnx"
+max_batch_size: 64
+input [
+  {
+    name: "input"
+    data_type: TYPE_FP32
+    dims: [ -1, 8 ]
+  }
+]
+output [
+  {
+    name: "score"
+    data_type: TYPE_FP32
+    dims: [ 1 ]
+  }
+]
+instance_group [ { kind: KIND_GPU } ]
+dynamic_batching { }

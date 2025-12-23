@@ -1,0 +1,19 @@
+name: "gnn_fraud"
+platform: "onnxruntime_onnx"
+max_batch_size: 32
+input [
+  {
+    name: "node_features"
+    data_type: TYPE_FP32
+    dims: [ -1, 16 ]
+  }
+]
+output [
+  {
+    name: "score"
+    data_type: TYPE_FP32
+    dims: [ -1, 1 ]
+  }
+]
+instance_group [ { kind: KIND_GPU } ]
+dynamic_batching { }
