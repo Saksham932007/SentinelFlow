@@ -13,14 +13,14 @@ SentinelFlow is a production-minded reference implementation of a distributed, r
 
 ```mermaid
 flowchart LR
-	A[Producer (ingestion)] -->|raw-transactions| B(Kafka)
-	B --> C[Spark Structured Streaming]
-	C --> D[MinIO (Data Lake)]
-	C --> E[Redis (Online Feature Store)]
-	F[Model Training (PyTorch / PyG)] -->|ONNX| G[Triton Inference Server]
-	H[FastAPI Serving] --> G
-	H --> E
-	I[Prometheus + Grafana] --> G
+  Producer[Producer - ingestion] -->|raw-transactions| Kafka(Kafka)
+  Kafka --> Spark[Spark Structured Streaming]
+  Spark --> MinIO[MinIO Data Lake]
+  Spark --> Redis[Redis - Online Feature Store]
+  Trainer[Model Training (PyTorch / PyG)] -->|ONNX| Triton[Triton Inference Server]
+  Serving[FastAPI Serving] --> Triton
+  Serving --> Redis
+  Prometheus[Prometheus + Grafana] --> Triton
 ```
 
 ## Tech Stack
