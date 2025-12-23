@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentinelflow-serving
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sentinelflow
+  template:
+    metadata:
+      labels:
+        app: sentinelflow
+    spec:
+      containers:
+        - name: serving
+          image: yourrepo/sentinelflow:latest
+          ports:
+            - containerPort: 8080
