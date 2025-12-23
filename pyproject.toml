@@ -1,0 +1,19 @@
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.ruff]
+line-length = 88
+select = ['E', 'F', 'W', 'B', 'C90']
+
+[tool.mypy]
+python_version = 3.9
+ignore_missing_imports = true
+strict = false
+
+[tool.isort]
+profile = "black"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
