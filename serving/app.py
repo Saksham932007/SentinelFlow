@@ -7,6 +7,7 @@ from typing import Dict
 from serving.feature_store import FeatureStore
 from serving.triton_client import TritonClient
 import numpy as np
+from serving.explainability import compute_shap_explanation
 
 app = FastAPI(title="SentinelFlow Serving")
 
@@ -57,3 +58,12 @@ async def predict(payload: Dict) -> Dict:
     score = 0.6 * lstm_score + 0.4 * gnn_score + min(1.0, velocity / 100.0) * 0.1
     action = "BLOCK" if score > 0.5 else "ALLOW"
     return {"score": score, "action": action, "velocity": velocity}
+
+
+@app.post("/explain")
+async def explain(payload: Dict) -> Dict:
+    user = payload.get("nameOrig")
+    # build features for explanation (placeholder)
+    features = np.random.randn(1, 8)
+    explanation = compute_shap_explanation("lstm_fraud", features)
+    return {"explanation": explanation}
