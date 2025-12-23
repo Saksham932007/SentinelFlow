@@ -49,3 +49,15 @@ services:
       - "8001:8001" # GRPC
       - "8000:8000" # HTTP
       - "8002:8002" # Metrics
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./deploy/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:9.5.0
+    ports:
+      - "3000:3000"
