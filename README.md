@@ -17,10 +17,10 @@ flowchart LR
   Kafka --> Spark[Spark Structured Streaming]
   Spark --> MinIO[MinIO Data Lake]
   Spark --> Redis[Redis - Online Feature Store]
-  Trainer[Model Training (PyTorch / PyG)] -->|ONNX| Triton[Triton Inference Server]
+  Trainer[Model Training - PyTorch & PyG] -->|ONNX| Triton[Triton Inference Server]
   Serving[FastAPI Serving] --> Triton
   Serving --> Redis
-  Prometheus[Prometheus + Grafana] --> Triton
+  Prometheus[Prometheus and Grafana] --> Triton
 ```
 
 ## Tech Stack
