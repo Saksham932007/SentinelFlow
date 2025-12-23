@@ -37,3 +37,15 @@ services:
     command: server /data
     ports:
       - "9000:9000"
+
+  triton:
+    image: nvcr.io/nvidia/tritonserver:23.10-py3
+    runtime: nvidia
+    environment:
+      - TRITON_SERVER_OPTIONS=--model-repository=/models
+    volumes:
+      - ./deploy/model_repository:/models
+    ports:
+      - "8001:8001" # GRPC
+      - "8000:8000" # HTTP
+      - "8002:8002" # Metrics
