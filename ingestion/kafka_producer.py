@@ -16,7 +16,7 @@ class KafkaTransactionProducer(TransactionProducer):
     def send(self, topic: str, record: Dict[str, Any]) -> None:
         payload = json.dumps(record, default=str)
 
-        def _delivery(err, msg):
+        def _delivery(err: Exception | None, msg) -> None:
             if err:
                 # In production we'd have retries and logging
                 print(f"Delivery failed: {err}")

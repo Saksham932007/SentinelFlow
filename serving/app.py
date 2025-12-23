@@ -12,7 +12,7 @@ app = FastAPI(title="SentinelFlow Serving")
 
 
 class LatencyMiddleware(BaseHTTPMiddleware):
-    async def dispatch(self, request: Request, call_next):
+    async def dispatch(self, request: Request, call_next) -> any:
         start = time.time()
         resp = await call_next(request)
         duration = (time.time() - start) * 1000

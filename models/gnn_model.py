@@ -23,7 +23,7 @@ class GNNFraudDetector(nn.Module):
         self.conv2 = SAGEConv(hidden_channels, hidden_channels)
         self.fc = nn.Sequential(nn.Linear(hidden_channels, 32), nn.ReLU(), nn.Linear(32, out_channels), nn.Sigmoid())
 
-    def forward(self, x, edge_index):
+    def forward(self, x: torch.Tensor, edge_index: torch.Tensor) -> torch.Tensor:
         x = self.conv1(x, edge_index)
         x = torch.relu(x)
         x = self.conv2(x, edge_index)
