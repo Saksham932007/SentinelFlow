@@ -1,0 +1,7 @@
+name: "ensemble_fraud"
+platform: "ensemble"
+max_batch_size: 64
+input [ { name: "input" data_type: TYPE_FP32 dims: [ -1, 8 ] } ]
+output [ { name: "score" data_type: TYPE_FP32 dims: [ 1 ] } ]
+ensemble_scheduling: { max_queue_delay_microseconds: 500 }
+model_repository_paths: ["/models"]
